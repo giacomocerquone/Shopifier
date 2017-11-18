@@ -1,0 +1,15 @@
+{
+  "name": "jsonshooter",
+  "version": "1.0.0",
+  "description": "Server that shoots JSON data for our Shopifier Android app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Giacomo Cerquone <cerquone96@hotmail.it>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.12.1"
+  }
+}
