@@ -5,8 +5,7 @@
     android:fillViewport="true"
     android:scrollbars="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingBottom="?android:attr/actionBarSize" >
+    android:paddingLeft="@dimen/activity_horizontal_margin" >
 
     <ListView
         android:layout_width="match_parent"
