@@ -11,5 +11,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "nodemon": "^1.12.1"
+  },
+  "engines": {
+    "node": "9.2.0"
   }
 }
