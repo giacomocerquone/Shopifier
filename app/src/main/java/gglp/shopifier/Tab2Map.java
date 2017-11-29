@@ -32,7 +32,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
         mapView = (MapView) view.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
-        mapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
+        mapView.getMapAsync(this);
     }
 
     @Override
