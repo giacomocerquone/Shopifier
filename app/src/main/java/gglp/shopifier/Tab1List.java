@@ -86,7 +86,7 @@ public class Tab1List extends Fragment {
                         @Override
                         public void onSuccess(Location location) {
                             if(location != null)
-                                Toast.makeText(getActivity().getApplicationContext(), "Posizione ottenuta: " + location.getLatitude(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + location.getLatitude() + "\nLongitudine: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
