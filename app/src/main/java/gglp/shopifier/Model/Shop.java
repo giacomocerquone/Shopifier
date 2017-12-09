@@ -7,8 +7,6 @@ public class Shop {
     private String tel;
     private String email;
 
-    public Shop(){}
-
     public Shop(String name, String address, String tel, String email) {
         setName(name);
         setAddress(address);

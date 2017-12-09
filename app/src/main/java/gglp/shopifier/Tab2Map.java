@@ -34,8 +34,43 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
     private double lat, lon;
 
     @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted
+                    Toast.makeText(getActivity().getApplicationContext(), grantResults.toString() ,Toast.LENGTH_SHORT).show();
+                } else {
+                    // Permission not granted
+                    Toast.makeText(getActivity().getApplicationContext(), "E' inutile utilizzare quest'applicazione senza abilitare la posizione!", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2map, container, false);
+
+
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        mapView = (MapView) view.findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+        mapView.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        googleMap = map;
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity().getApplicationContext());
 
         // Check if we have permissions
@@ -56,47 +91,24 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                     .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
-                            if(location != null)
+                            if(location != null) {
                                 lat = location.getLatitude();
                                 lon = location.getLongitude();
                                 Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + lat + "\nLongitudine: " + lon, Toast.LENGTH_SHORT).show();
+
+                                LatLng laquila = new LatLng(lat, lon);
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(laquila, 1f));
+                                MarkerOptions markerOptions = new MarkerOptions();
+                                markerOptions.position(laquila);
+                                markerOptions.title("City of L'Aquila");
+                                markerOptions.snippet("Snippet of L'Aquila");
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                                Marker marker = googleMap.addMarker(markerOptions);
+                            }
                         }
                     });
         }
 
-        return rootView;
-    }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (isVisibleToUser) {
-            //TODO: will update shops here
-            Toast.makeText(getContext(), "Mappa visibile", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        mapView = (MapView) view.findViewById(R.id.map);
-        mapView.onCreate(savedInstanceState);
-        mapView.onResume();
-        mapView.getMapAsync(this);
-    }
-
-    @Override
-    public void onMapReady(GoogleMap map) {
-        googleMap = map;
-
-        // LatLng laquila = new LatLng(42.367422, 13.349200);
-        LatLng laquila = new LatLng(lat, lon);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(laquila, 12f));
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(laquila);
-        markerOptions.title("City of L'Aquila");
-        markerOptions.snippet("Snippet of L'Aquila");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        Marker marker = googleMap.addMarker(markerOptions);
     }
 }
