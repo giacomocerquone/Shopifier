@@ -108,7 +108,13 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                         }
                     });
         }
+    }
 
-
+    @Override
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            Toast.makeText(getActivity().getApplicationContext(), "Muss", Toast.LENGTH_SHORT).show();
+        }
     }
 }

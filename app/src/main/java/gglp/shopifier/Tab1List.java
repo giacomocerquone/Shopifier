@@ -112,10 +112,11 @@ public class Tab1List extends Fragment {
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-        } else {
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            Toast.makeText(getActivity().getApplicationContext(), "Miss", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
