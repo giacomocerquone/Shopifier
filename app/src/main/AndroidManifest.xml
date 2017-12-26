@@ -50,16 +50,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <service android:name=".StartMyServiceAtBootReceiver"
-            android:label="My Service">
-            <intent-filter>
-                <action android:name="com.myapp.MyService" />
-            </intent-filter>
+        <service android:name=".Shared.NotificationService" android:exported="false">
         </service>
 
         <receiver
-            android:name=".receiver.StartMyServiceAtBootReceiver"
-            android:label="StartMyServiceAtBootReceiver">
+            android:name=".Shared.StartMyServiceAtBootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
