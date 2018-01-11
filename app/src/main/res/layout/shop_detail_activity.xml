@@ -24,4 +24,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/details_email"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_lat"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_lon"/>
+
 </LinearLayout>
