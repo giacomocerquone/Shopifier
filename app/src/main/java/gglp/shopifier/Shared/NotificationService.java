@@ -1,5 +1,6 @@
 package gglp.shopifier.Shared;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -8,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
+
+import java.util.concurrent.TimeUnit;
 
 import gglp.shopifier.MainActivity;
 import gglp.shopifier.R;
@@ -87,6 +90,7 @@ public class NotificationService extends Service{
         builder.setContentTitle("Pierantonio");
         builder.setContentText("Ha problemi mentali");
         builder.setSubText("Come Marco Macrini");
+        builder.setDefaults(Notification.DEFAULT_SOUND);
 
         // END_INCLUDE (build_notification)
 

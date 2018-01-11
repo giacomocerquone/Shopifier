@@ -2,6 +2,11 @@ package gglp.shopifier;
 
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +21,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import gglp.shopifier.Shared.NotificationReceiver;
+import gglp.shopifier.Shared.NotificationService;
+
 public class MainActivity extends AppCompatActivity {
-
-
 
 
     /**
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        startNotifications();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
+
     }
 
     @Override
@@ -113,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     return null;
             }
         }
+
         @Override
         public int getCount() {
             // Show 3 total pages.
@@ -130,5 +139,10 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+public void startNotifications(){
+    AlarmManager alarmManager=(AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+    Intent myIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,myIntent,0);
+    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+3000,60*1000,pendingIntent);
 }
-
+}
