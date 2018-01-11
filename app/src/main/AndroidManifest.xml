@@ -50,8 +50,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <service android:name=".Shared.NotificationService" android:exported="false">
-        </service>
 
         <receiver
             android:name=".Shared.StartMyServiceAtBootReceiver" >

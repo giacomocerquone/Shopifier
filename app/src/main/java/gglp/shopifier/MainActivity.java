@@ -2,11 +2,6 @@ package gglp.shopifier;
 
 
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import gglp.shopifier.Shared.NotificationReceiver;
-import gglp.shopifier.Shared.NotificationService;
+import gglp.shopifier.Model.Alarm;
 
 public class MainActivity extends AppCompatActivity {
-
+    int cont=1;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -46,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startNotifications();
-
+        Alarm.startNotifications(getApplicationContext(),cont);
+        cont++;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -139,10 +133,4 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
-public void startNotifications(){
-    AlarmManager alarmManager=(AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-    Intent myIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
-    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,myIntent,0);
-    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+3000,60*1000,pendingIntent);
-}
 }
