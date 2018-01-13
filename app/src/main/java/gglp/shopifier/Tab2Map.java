@@ -87,8 +87,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                         MY_PERMISSIONS_REQUEST_READ_FINE_LOCATION);
             }
         } else {
-            mFusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+            mFusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             if(location != null) {
@@ -97,14 +96,15 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                                 Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + lat + "\nLongitudine: " + lon, Toast.LENGTH_SHORT).show();
 
                                 LatLng laquila = new LatLng(lat, lon);
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(laquila, 1f));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(laquila,6));
                                 MarkerOptions markerOptions = new MarkerOptions();
                                 markerOptions.position(laquila);
                                 markerOptions.title("City of L'Aquila");
                                 markerOptions.snippet("Snippet of L'Aquila");
-                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                                 Marker marker = googleMap.addMarker(markerOptions);
                             }
+                            else Toast.makeText(getActivity().getApplicationContext(),"merda",Toast.LENGTH_SHORT).show();
                         }
                     });
         }
