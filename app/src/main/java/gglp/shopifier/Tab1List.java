@@ -102,9 +102,11 @@ public class Tab1List extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), ShopDetailActivity.class);
                 intent.putExtra("name", shop.getName());
                 intent.putExtra("address", shop.getAddress());
-                intent.putExtra("tel", shop.getTel());
+                intent.putExtra("phone", shop.getTel());
                 intent.putExtra("lat", shop.getLat());
                 intent.putExtra("lon", shop.getLon());
+                intent.putExtra("email",shop.getEmail());
+                intent.putExtra("descr",shop.getDescr());
                 startActivity(intent);
             }
         });

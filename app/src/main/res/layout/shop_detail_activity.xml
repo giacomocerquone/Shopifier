@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/details_tel"/>
+            android:id="@+id/details_phone"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -33,5 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/details_lon"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/details_descr"/>
 
 </LinearLayout>

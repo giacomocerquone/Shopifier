@@ -15,12 +15,12 @@ import gglp.shopifier.Shared.NotificationReceiver;
 public class Alarm {
 
  public static void startNotifications(Context context, int num){
-        if(num==1){
+        /*if(num==1){
         AlarmManager alarmManager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent myIntent = new Intent(context, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,myIntent,0);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+3000,100*1000,pendingIntent);
-        }
+        }*/
  }
 
 }
