@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,9 +93,7 @@ public class Tab1List extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.shop_list_view);
         listView.setAdapter(adapter);
-
         ShopService.getShops(getActivity().getApplicationContext(), adapter, rootView);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -111,6 +111,9 @@ public class Tab1List extends Fragment {
             }
         });
 
+
+
+
         return rootView;
     }
 
@@ -121,5 +124,4 @@ public class Tab1List extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(), "Miss", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

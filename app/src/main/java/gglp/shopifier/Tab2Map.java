@@ -2,8 +2,10 @@ package gglp.shopifier;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -28,6 +30,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +43,9 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
 
     private MapView mapView;
     private GoogleMap googleMap;
-    private ArrayAdapter<Shop> adapter;
-    private int i=0;
+    private View rootView;
+    private ArrayList<Shop> adapter;
+    private int i = 0;
 
 
     private FusedLocationProviderClient mFusedLocationClient;
@@ -55,7 +60,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // Permission granted
-                    Toast.makeText(getActivity().getApplicationContext(), grantResults.toString() ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), grantResults.toString(), Toast.LENGTH_SHORT).show();
                 } else {
                     // Permission not granted
                     Toast.makeText(getActivity().getApplicationContext(), "E' inutile utilizzare quest'applicazione senza abilitare la posizione!", Toast.LENGTH_SHORT).show();
@@ -67,7 +72,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab2map, container, false);
+        rootView = inflater.inflate(R.layout.tab2map, container, false);
         return rootView;
     }
 
@@ -100,24 +105,24 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
             }
         } else {
             mFusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            if(location != null) {
-                                lat = location.getLatitude();
-                                lon = location.getLongitude();
-                                Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + lat + "\nLongitudine: " + lon, Toast.LENGTH_SHORT).show();
-                                LatLng personal = new LatLng(lat, lon);
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(personal,13));
-                                MarkerOptions markerOptions = new MarkerOptions();
-                                markerOptions.position(personal);
-                                markerOptions.title("You");
-                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                                Marker marker = googleMap.addMarker(markerOptions);
-                            }
-                            else Toast.makeText(getActivity().getApplicationContext(),"merda",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-addShops();
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        lat = location.getLatitude();
+                        lon = location.getLongitude();
+                        Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + lat + "\nLongitudine: " + lon, Toast.LENGTH_SHORT).show();
+                        LatLng personal = new LatLng(lat, lon);
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(personal, 13));
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(personal);
+                        markerOptions.title("You");
+                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                        Marker marker = googleMap.addMarker(markerOptions);
+                    } else
+                        Toast.makeText(getActivity().getApplicationContext(), "merda", Toast.LENGTH_SHORT).show();
+                }
+            });
+            addShops();
             /*//for(i=0;i<adapter.getCount();i++){
                 LatLng p = new LatLng(Double.parseDouble(adapter.getItem(i).getLat()),Double.parseDouble(adapter.getItem(i).getLon()));
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p,9));
@@ -126,8 +131,9 @@ addShops();
                 markerOptions.title(adapter.getItem(i).getName());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                 Marker marker = googleMap.addMarker(markerOptions);
-           //*/ }
+           //*/
         }
+    }
 
 
     @Override
@@ -139,23 +145,19 @@ addShops();
     }
 
 
-    public void addShops(){
-        /*List<Shop> shop_list = new ArrayList<>();
-        adapter = new ArrayAdapter<>(
-                getActivity(),
-                R.layout.list_item_shop,
-                R.id.text_view_shop,
-                shop_list
-        );
-        ListView listView = (ListView) view.findViewById(R.id.shop_list_view);
-        listView.setAdapter(adapter);
-        ShopService.getShops(getActivity().getApplicationContext(), adapter, view);
-        */LatLng p = new LatLng(42.364682,13.342044);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p,11));
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(p);
-        markerOptions.title("ranaldo");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-        Marker marker = googleMap.addMarker(markerOptions);
+    public void addShops() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String str = preferences.getString("shops", "");
+        Gson gson = new GsonBuilder().create();
+        Shop[] shops = gson.fromJson(str, Shop[].class);
+        for (i = 0; i < shops.length; i++) {
+            LatLng p = new LatLng(Double.parseDouble(shops[i].getLat()),Double.parseDouble(shops[i].getLon()));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 10));
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(p);
+            markerOptions.title(shops[i].getName());
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            Marker marker = googleMap.addMarker(markerOptions);
         }
+    }
 }

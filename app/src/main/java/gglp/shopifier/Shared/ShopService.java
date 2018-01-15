@@ -17,10 +17,13 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 import gglp.shopifier.Model.Shop;
 import gglp.shopifier.R;
 
 public class ShopService {
+    List<Shop> sList;
 
     public static void writeShops(String localShops, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -71,5 +74,13 @@ public class ShopService {
             }
         });
         queue.add(stringRequest);
+    }
+
+    public void setList(List<Shop> list){
+        sList=list;
+    }
+
+    public List<Shop> getsList() {
+        return sList;
     }
 }
