@@ -4,8 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import gglp.shopifier.Model.Alarm;
-
 public class StartMyServiceAtBootReceiver extends BroadcastReceiver {
 
     @Override

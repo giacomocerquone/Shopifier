@@ -139,14 +139,16 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
         String str = preferences.getString("shops", "");
         Gson gson = new GsonBuilder().create();
         Shop[] shops = gson.fromJson(str, Shop[].class);
-        for (int i = 0; i < shops.length; i++) {
-            LatLng p = new LatLng(Double.parseDouble(shops[i].getLat()), Double.parseDouble(shops[i].getLon()));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 10));
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(p);
-            markerOptions.title(shops[i].getName());
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-            Marker marker = googleMap.addMarker(markerOptions);
+        if (shops != null) {
+            for (int i = 0; i < shops.length; i++) {
+                LatLng p = new LatLng(Double.parseDouble(shops[i].getLat()), Double.parseDouble(shops[i].getLon()));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 10));
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(p);
+                markerOptions.title(shops[i].getName());
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                Marker marker = googleMap.addMarker(markerOptions);
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import gglp.shopifier.Model.Alarm;
+import gglp.shopifier.Shared.Alarm;
 
 public class MainActivity extends AppCompatActivity {
     /**

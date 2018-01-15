@@ -1,4 +1,4 @@
-package gglp.shopifier.Model;
+package gglp.shopifier.Shared;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
