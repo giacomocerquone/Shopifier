@@ -35,7 +35,7 @@ public class ShopService {
 
     public static String readShops(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString("shops","");
+        return preferences.getString("shops", "");
     }
 
     public static void getShops(final Context context, final ArrayAdapter<Shop> adapter, View view) {
@@ -63,7 +63,7 @@ public class ShopService {
                 adapter.clear();
                 progressBar.setVisibility(View.GONE);
                 String jsonShops = ShopService.readShops(context);
-                if(!jsonShops.equals("")) {
+                if (!jsonShops.equals("")) {
                     Gson gson = new GsonBuilder().create();
                     Shop[] shops = gson.fromJson(jsonShops, Shop[].class);
                     for (Shop shop : shops) {
@@ -74,13 +74,5 @@ public class ShopService {
             }
         });
         queue.add(stringRequest);
-    }
-
-    public void setList(List<Shop> list){
-        sList=list;
-    }
-
-    public List<Shop> getsList() {
-        return sList;
     }
 }

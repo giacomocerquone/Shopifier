@@ -45,8 +45,6 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
     private GoogleMap googleMap;
     private View rootView;
     private ArrayList<Shop> adapter;
-    private int i = 0;
-
 
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_READ_FINE_LOCATION = 100;
@@ -123,15 +121,6 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                 }
             });
             addShops();
-            /*//for(i=0;i<adapter.getCount();i++){
-                LatLng p = new LatLng(Double.parseDouble(adapter.getItem(i).getLat()),Double.parseDouble(adapter.getItem(i).getLon()));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p,9));
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(p);
-                markerOptions.title(adapter.getItem(i).getName());
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                Marker marker = googleMap.addMarker(markerOptions);
-           //*/
         }
     }
 
@@ -150,8 +139,8 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
         String str = preferences.getString("shops", "");
         Gson gson = new GsonBuilder().create();
         Shop[] shops = gson.fromJson(str, Shop[].class);
-        for (i = 0; i < shops.length; i++) {
-            LatLng p = new LatLng(Double.parseDouble(shops[i].getLat()),Double.parseDouble(shops[i].getLon()));
+        for (int i = 0; i < shops.length; i++) {
+            LatLng p = new LatLng(Double.parseDouble(shops[i].getLat()), Double.parseDouble(shops[i].getLon()));
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 10));
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(p);
