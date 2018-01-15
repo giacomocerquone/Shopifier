@@ -6,15 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
-import gglp.shopifier.Shared.NotificationReceiver;
+import gglp.shopifier.Shared.GetLocationService;
 
 public class Alarm {
     public static void startNotifications(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent myIntent = new Intent(context, NotificationReceiver.class);
-
-        //myIntent.putExtra("yolo","diocane");
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, myIntent, 0);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000, 100 * 100, pendingIntent);
+        Intent myIntent = new Intent(context, GetLocationService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, myIntent, 0);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000, 61000, pendingIntent);
     }
 }

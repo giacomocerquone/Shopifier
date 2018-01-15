@@ -57,7 +57,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".Shared.NotificationReceiver" />
+
+        <service android:name=".Shared.GetLocationService"></service>
     </application>
 
 </manifest>
