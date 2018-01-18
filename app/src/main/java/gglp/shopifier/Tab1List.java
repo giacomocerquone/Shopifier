@@ -97,16 +97,16 @@ public class Tab1List extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Shop shop = (Shop) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), ShopDetailActivity.class);
                 intent.putExtra("name", shop.getName());
                 intent.putExtra("address", shop.getAddress());
                 intent.putExtra("phone", shop.getTel());
-                intent.putExtra("lat", shop.getLat());
-                intent.putExtra("lon", shop.getLon());
                 intent.putExtra("email",shop.getEmail());
                 intent.putExtra("descr",shop.getDescr());
+                intent.putExtra("image",shop.getImage());
+                intent.putExtra("lat",shop.getLat());
+                intent.putExtra("lon",shop.getLon());
                 startActivity(intent);
             }
         });

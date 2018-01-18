@@ -1,41 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp">
 
-        <TextView
-            android:layout_width="match_parent"
+
+        <ImageView
+            android:id="@+id/image_view_shop"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/details_name"/>
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/common_full_open_on_phone" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/details_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/details_address"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_shop" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/details_address"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/details_phone"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:onClick="open_gmap"
+            android:clickable="true"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_name" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/details_descr"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/details_email"/>
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="56dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_name" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/details_phone"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/details_lat"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:onClick="call_shop"
+            android:clickable="true"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_descr" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/details_email"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/details_lon"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/details_descr"/>
-
-</LinearLayout>
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:onClick="send_email_shop"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_descr" />
+</android.support.constraint.ConstraintLayout>
