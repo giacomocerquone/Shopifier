@@ -28,23 +28,22 @@ import java.util.List;
 import gglp.shopifier.Model.Shop;
 import gglp.shopifier.Shared.ShopService;
 
-
 public class Tab1List extends Fragment {
 
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_READ_FINE_LOCATION = 100;
     private ArrayAdapter<Shop> adapter;
+
     private View rootView;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // Permission granted
-                    Toast.makeText(getActivity().getApplicationContext(), grantResults.toString() ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), grantResults.toString(), Toast.LENGTH_SHORT).show();
                 } else {
                     // Permission not granted
                     Toast.makeText(getActivity().getApplicationContext(), "E' inutile utilizzare quest'applicazione senza abilitare la posizione!", Toast.LENGTH_SHORT).show();
@@ -77,7 +76,7 @@ public class Tab1List extends Fragment {
                     .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
-                            if(location != null)
+                            if (location != null)
                                 Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + location.getLatitude() + "\nLongitudine: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -102,16 +101,14 @@ public class Tab1List extends Fragment {
                 intent.putExtra("name", shop.getName());
                 intent.putExtra("address", shop.getAddress());
                 intent.putExtra("phone", shop.getTel());
-                intent.putExtra("email",shop.getEmail());
-                intent.putExtra("descr",shop.getDescr());
-                intent.putExtra("image",shop.getImage());
-                intent.putExtra("lat",shop.getLat());
-                intent.putExtra("lon",shop.getLon());
+                intent.putExtra("email", shop.getEmail());
+                intent.putExtra("descr", shop.getDescr());
+                intent.putExtra("image", shop.getImage());
+                intent.putExtra("lat", shop.getLat());
+                intent.putExtra("lon", shop.getLon());
                 startActivity(intent);
             }
         });
-
-
 
 
         return rootView;
@@ -121,7 +118,7 @@ public class Tab1List extends Fragment {
     public void setUserVisibleHint(boolean visible) {
         super.setUserVisibleHint(visible);
         if (visible && isResumed()) {
-            Toast.makeText(getActivity().getApplicationContext(), "Miss", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity().getApplicationContext(), "Miss", Toast.LENGTH_SHORT).show();
         }
     }
 }

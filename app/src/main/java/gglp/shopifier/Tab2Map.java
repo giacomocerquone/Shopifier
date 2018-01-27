@@ -41,13 +41,14 @@ import gglp.shopifier.Shared.ShopService;
 
 public class Tab2Map extends Fragment implements OnMapReadyCallback {
 
-    private MapView mapView;
-    private GoogleMap googleMap;
-    private View rootView;
-    private ArrayList<Shop> adapter;
-
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_READ_FINE_LOCATION = 100;
+    private ArrayList<Shop> adapter;
+
+    private View rootView;
+
+    private MapView mapView;
+    private GoogleMap googleMap;
     private double lat, lon;
 
     @Override
@@ -108,7 +109,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                     if (location != null) {
                         lat = location.getLatitude();
                         lon = location.getLongitude();
-                        Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + lat + "\nLongitudine: " + lon, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + lat + "\nLongitudine: " + lon, Toast.LENGTH_SHORT).show();
                         LatLng personal = new LatLng(lat, lon);
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(personal, 13));
                         MarkerOptions markerOptions = new MarkerOptions();
@@ -116,8 +117,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
                         markerOptions.title("You");
                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                         Marker marker = googleMap.addMarker(markerOptions);
-                    } else
-                        Toast.makeText(getActivity().getApplicationContext(), "merda", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             addShops();
@@ -129,7 +129,7 @@ public class Tab2Map extends Fragment implements OnMapReadyCallback {
     public void setUserVisibleHint(boolean visible) {
         super.setUserVisibleHint(visible);
         if (visible && isResumed()) {
-            Toast.makeText(getActivity().getApplicationContext(), "Muss", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity().getApplicationContext(), "Muss", Toast.LENGTH_SHORT).show();
         }
     }
 
