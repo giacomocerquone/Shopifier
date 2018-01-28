@@ -13,7 +13,7 @@ module.exports = [
     lat: 42.356988,
     lon: 13.412915,
     image: 'images/FootLocker.jpg',
-    descr: 'Il negozio di scarpe più fornito dell'Aquila!',
+    descr: 'Il negozio di scarpe piï¿½ fornito dell\'Aquila!',
     phone: '3461202941',
     address: 'Via Guglielmo Enrico Fritzche',
     email: 'info@footlocker.com'
@@ -22,7 +22,7 @@ module.exports = [
     lat: 42.348208,
     lon: 13.404207,
     image: 'images/Gucci.jpg',
-    descr: 'Il negozio d'alta moda più conoscito del mondo!',
+    descr: 'Il negozio d\'alta moda piÃ¹ conoscito del mondo!',
     phone: '3484366708',
     address: 'Via Carlo Chiarizia 33',
     email: 'info@gucci.com'
@@ -49,7 +49,7 @@ module.exports = [
     lat: 42.370306,
     lon: 13.340665,
     image: 'images/Target.jpg',
-    descr: 'La serigrafia più veloce dell'Aquila!',
+    descr: 'La serigrafia piÃ¹ veloce dell\'Aquila!',
     phone: '3772319119',
     address: 'Via Civita Retenga',
     email: 'davide.teod@gmail.com'
