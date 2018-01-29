@@ -97,7 +97,6 @@ public class GetLocationService extends Service {
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("Shopifier")
-                .setContentText("Un negozio è nelle vicinanze!")
                 .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
                 .setContentInfo("Clicca qui");
                 NotificationManager notificationManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -106,7 +105,7 @@ public class GetLocationService extends Service {
         if (lat != null && lon != null && shops!=null) {
             for(int i=0;i<shops.length;i++){
                 if((Double.parseDouble(shops[i].getLat())-lat<0.009 && Double.parseDouble(shops[i].getLat())-lat>-0.009)&&(Double.parseDouble(shops[i].getLon())-lon<0.009 && Double.parseDouble(shops[i].getLon())-lon>-0.009)){
-                    builder.setContentText(shops[i].getName());
+                    builder.setContentText("Sei vicino a " + shops[i].getName() + ". Entra per dargli un'occhiata!");
                     notificationManager.notify(1, builder.build());
                     i = shops.length;
                     break;

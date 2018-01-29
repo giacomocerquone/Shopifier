@@ -76,8 +76,8 @@ public class Tab1List extends Fragment {
                     .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
-                            if (location != null)
-                                Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + location.getLatitude() + "\nLongitudine: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+                            //if (location != null)
+                                //Toast.makeText(getActivity().getApplicationContext(), "Latitudine: " + location.getLatitude() + "\nLongitudine: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }

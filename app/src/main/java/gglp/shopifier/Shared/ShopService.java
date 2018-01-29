@@ -55,7 +55,7 @@ public class ShopService {
                         for (Shop shop : shops) {
                             adapter.add(shop);
                         }
-                        Toast.makeText(context, "Dati ottenuti", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(context, "Dati ottenuti", Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
