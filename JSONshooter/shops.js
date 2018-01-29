@@ -13,7 +13,7 @@
     lat: 42.356988,
     lon: 13.412915,
     image: 'images/FootLocker.jpg',
-    descr: 'Il negozio di scarpe pi� fornito dell\'Aquila!',
+    descr: 'Il negozio di scarpe più fornito dell\'Aquila!',
     phone: '3461202941',
     address: 'Via Guglielmo Enrico Fritzche',
     email: 'info@footlocker.com'
@@ -62,4 +62,4 @@
     phone: '3493240700',
     address: 'Via Vetoio 49',
     email: 'info@univaq.com'
-]
+}];
