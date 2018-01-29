@@ -13,6 +13,6 @@ public class Alarm {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent myIntent = new Intent(context, GetLocationService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, myIntent, 0);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000, 61000, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000, 300000, pendingIntent);
     }
 }
