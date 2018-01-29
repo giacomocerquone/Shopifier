@@ -1,4 +1,4 @@
-module.exports = [
+﻿module.exports = [
   {
     name: 'Decathlon ',
     lat: 42.361929,
@@ -34,7 +34,7 @@ module.exports = [
     descr: 'H&M ti aspetta con incredibili saldi ed occasioni da non perdere!',
     phone: '3408825392',
     address: 'Via antica arischia 42',
-    email: 'giaco.cer@gmail.com'
+    email: 'info@h&m.com.com'
   }, {
     name: 'MediaWorld',
     lat: 42.364682,
@@ -43,7 +43,7 @@ module.exports = [
     descr: 'Il negozio di elettronica preferito dagli italiani!',
     phone: '3312566473',
     address: 'Via Madonna delle Grazie 16',
-    email: 'andrea.rana@gmail.com'
+    email: 'info@mediaworld.com'
   }, {
     name: 'Target',
     lat: 42.370306,
@@ -52,6 +52,14 @@ module.exports = [
     descr: 'La serigrafia più veloce dell\'Aquila!',
     phone: '3772319119',
     address: 'Via Civita Retenga',
-    email: 'davide.teod@gmail.com'
-  },
+    email: 'info@target.com'
+  },  {
+    name: 'Univaq',
+    lat: 42.368642,
+    lon: 13.350328,
+    image: 'images/Univaq.jpg',
+    descr: 'L\'università più bella d\'Italia ti aspetta nei suoi corsi di laurea',
+    phone: '3493240700',
+    address: 'Via Vetoio 49',
+    email: 'info@univaq.com'
 ]
